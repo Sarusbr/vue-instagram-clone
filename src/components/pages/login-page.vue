@@ -1,5 +1,5 @@
 <template>
-    <div class="container center">
+    <div class="center" style="width:100%;height:100vh;">
         <login-box></login-box>
     </div>
 </template>

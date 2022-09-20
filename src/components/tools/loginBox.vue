@@ -1,6 +1,6 @@
 <template>
     <div class="center flex-column">
-        <div class="loginbox center mt-5 mb-3 border border-secondery py-4">
+        <div class="loginbox center mb-3 border border-secondery py-4">
             <img src="../../assets/Logo.png" class="w-50" alt="">
             <input-text class="w-75" inputType="text" placeholderName="Kullanıcı adı, e-posta veya telefon"></input-text>
             <input-text class="w-75" inputType="password" placeholderName="Şifre"></input-text>
