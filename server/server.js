@@ -1,6 +1,8 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+
 
 const {databaseConfig} = require('./config/database.js');
 const {checkUser} = require('./users/checkUser.js');
@@ -9,7 +11,8 @@ const {createUser} = require('./users/createUser.js');
 const publicFolder = '/../pages';
 
 app.use(express.static(path.join(__dirname, publicFolder)));
-
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 
 
