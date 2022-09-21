@@ -4,11 +4,10 @@ const path = require('path');
 const app = express();
 
 
-const {databaseConfig} = require('./config/database.js');
+const {databaseConfig, publicFolder} = require('./config/config.js');
 const {checkUser} = require('./users/checkUser.js');
 const {createUser} = require('./users/createUser.js');
 
-const publicFolder = '/../pages';
 
 app.use(express.static(path.join(__dirname, publicFolder)));
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -27,34 +26,38 @@ app.post('/checkUser', (req, res) => {
     const username = req.body.username ?? undefined;
     const password = req.body.password ?? undefined;
     
-    if(username == undefined)
-    res.end("Username cannot be empty");
-
-    checkUser(username, (status)=>{
-        console.log(status);
-        res.end(status);
+    if(username == undefined){
+        res.end("Username cannot be empty");
+    }
+    else{
+        checkUser(username, (status)=>{
+            console.log(status);
+            res.end(status);
         }, password);
+    }
 });
 
 app.post('/createUser', (req, res) => {
 
-    const newName = req.body.password ?? undefined;
-    const newMail = req.body.password ?? undefined;
+    const newName = req.body.name ?? undefined;
+    const newEmail = req.body.email ?? undefined;
     const newUsername = req.body.username ?? undefined;
     const newPassword = req.body.password ?? undefined;
     
-    if(newName == undefined || newMail == undefined || newUsername == undefined || newPassword == undefined)
-        res.end("You must fill in all fields");
-
-    checkUser(newUsername,(status)=>{
-        console.log(status);
-        if (status == "Available")
-            res.end("Username is used");
-        else if (status == "NotAvailable")
-            createUser(newName, newMail ,newUsername, newPassword, (status)=>{
+    if(newName == undefined || newEmail == undefined || newUsername == undefined || newPassword == undefined){
+        res.end("You must fill in all fields");    
+    }
+    else{
+        checkUser(newUsername,(status)=>{
+            console.log(status);
+            if (status == "Available")
+                res.end("Username is used");
+            else if (status == "NotAvailable")
+                createUser(newName, newEmail ,newUsername, newPassword, (status)=>{
                 res.end(status);
+                });
             });
-        });
+        };
 });
 
 

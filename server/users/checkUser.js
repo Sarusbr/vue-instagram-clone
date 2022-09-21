@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const {databaseConfig, databaseName} = require('../config/database.js');
+const {databaseConfig, databaseName} = require('../config/config.js');
 const client = new MongoClient(databaseConfig.URL);
 
 async function checkUser(username, callback, password) {
