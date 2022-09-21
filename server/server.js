@@ -23,56 +23,51 @@ app.get('/', (req, res) => {
 
 app.post('/checkUser', (req, res) => {
 
-    const username = req.body.username ?? undefined;
-    const password = req.body.password ?? undefined;
+    const username = req.query.username ?? undefined;
+    const password = req.query.password ?? undefined;
     
-    if(username == undefined){
+    if(username == undefined)
         res.end("Username cannot be empty");
-    }
-    else{
-        checkUser(username, (status)=>{
-            console.log(status);
-            res.end(status);
-        }, password);
-    }
+    else
+        checkUser(username, password).then(result => res.end(JSON.stringify(result)));
 });
+
 
 app.post('/createUser', (req, res) => {
 
-    const newName = req.body.name ?? undefined;
-    const newEmail = req.body.email ?? undefined;
-    const newUsername = req.body.username ?? undefined;
-    const newPassword = req.body.password ?? undefined;
+    const newName = req.query.name ?? undefined;
+    const newEmail = req.query.email ?? undefined;
+    const newUsername = req.query.username ?? undefined;
+    const newPassword = req.query.password ?? undefined;
     
     if(newName == undefined || newEmail == undefined || newUsername == undefined || newPassword == undefined){
         res.end("You must fill in all fields");    
     }
     else{
         checkUser(newUsername,(status)=>{
-            console.log(status);
-            if (status == "Available")
+            if (status[0].status == "Available")
                 res.end("Username is used");
-            else if (status == "NotAvailable")
-                createUser(newName, newEmail ,newUsername, newPassword, (status)=>{
-                res.end(status);
-                });
+            else if (status[0].status == "NotAvailable")
+                createUser(newName, newEmail ,newUsername, newPassword).then(result => res.end(JSON.stringify(result)));
             });
         };
 });
 
 
 app.post('/getUser', (req, res) => {
-    const username = req.body.username ?? undefined;
-    const password = req.body.password ?? undefined;
+    const username = req.query.username ?? undefined;
+    const password = req.query.password ?? undefined;
 
-    if(username == undefined || password == undefined){
+    if(username == undefined || password == undefined)
         res.end("You must fill in all fields");    
-    }
+
      getUser(username, password).then(result => res.end(JSON.stringify(result)));
 });
 
 
 
-app.listen(process.env.PORT || 80);
 
+
+
+app.listen(process.env.PORT || 80);
 

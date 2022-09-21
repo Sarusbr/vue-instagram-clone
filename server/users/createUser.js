@@ -4,7 +4,7 @@ const client = new MongoClient(databaseConfig.URL);
 
 
 
-async function createUser(newName, newEmail, newUsername, newPassword, callback) {
+async function createUser(newName, newEmail, newUsername, newPassword) {
 
   try {
     await client.connect();
@@ -12,7 +12,7 @@ async function createUser(newName, newEmail, newUsername, newPassword, callback)
     const db = client.db(databaseConfig.databaseName);
     const collection = db.collection('users');
     const insertResult = await collection.insertOne({profilePhoto: "", name: newName, password : newPassword, email: newEmail, username: newUsername, bio : "", postsCount : 0, followersCount : 0, folowingCount : 0, posts : []});
-    callback("Successfully Created");
+    return [{status : "Successfully Created"}];
     console.log("Successfully Created");
   } catch (error) {
     console.log(error);
@@ -20,7 +20,6 @@ async function createUser(newName, newEmail, newUsername, newPassword, callback)
     await client.close();
   }
 }
-
 
 
 module.exports = {

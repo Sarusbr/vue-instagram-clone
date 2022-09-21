@@ -20,10 +20,10 @@ async function checkUser(username, callback, password) {
       ]
     });
     if( result != null ){
-       return  callback("Available"); //available
+      return callback([{status : "Available"}]);
     }
     else{
-      return callback("NotAvailable"); //not available
+      return callback([{status : "NotAvailable"}]);
     }
   } catch (error) {
     console.log(error);
@@ -31,7 +31,6 @@ async function checkUser(username, callback, password) {
     await client.close();
   }
 }
-
 
 
 module.exports = {

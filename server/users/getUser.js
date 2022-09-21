@@ -2,11 +2,9 @@ const MongoClient = require('mongodb').MongoClient;
 const {databaseConfig, databaseName} = require('../config/config.js');
 const client = new MongoClient(databaseConfig.URL);
 
-
 async function getUser(username, password, callback) {
 
   try {
-  
     await client.connect();
     console.log('Connected successfully to server (getUser)');
     const db = client.db(databaseConfig.databaseName);
@@ -22,19 +20,17 @@ async function getUser(username, password, callback) {
       ]
     });
     if( result != null ){
-       return result;
+       return [{status : "Available"},  result];
     }
     else{
-      return ("NotAvailable"); //not available
+        return [{status : "NotAvailable"}];
     }
   } catch (error) {
     console.log(error);
   } finally{
     await client.close();
   }
-}
-
-
+};
 
 
 module.exports = {

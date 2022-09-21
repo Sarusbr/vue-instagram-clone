@@ -9,6 +9,7 @@ const databaseConfig = {
 
 const publicFolder = '/../pages';
 
+
 module.exports = {
     databaseConfig: databaseConfig,
     publicFolder: publicFolder
