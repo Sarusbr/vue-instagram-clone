@@ -4,7 +4,8 @@ const store = createStore({
     state:{
         username:null,
         name:null,
-        email:null
+        email:null,
+        screenWidth:0
     }
 })
 
