@@ -20,10 +20,10 @@ async function checkUser(username, callback, password) {
       ]
     });
     if( result != null ){
-       return  callback("available"); //available
+       return  callback("Available"); //available
     }
     else{
-      return callback("notAvailable"); //not available
+      return callback("NotAvailable"); //not available
     }
   } catch (error) {
     console.log(error);

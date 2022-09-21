@@ -45,9 +45,9 @@ app.post('/createUser', (req, res) => {
 
     checkUser(newUsername,(status)=>{
         console.log(status);
-        if (status == "available")
+        if (status == "Available")
             res.end("Username is used");
-        else if (status == "notAvailable")
+        else if (status == "NotAvailable")
             createUser(newName, newMail ,newUsername, newPassword, (status)=>{
                 res.end(status);
             });
