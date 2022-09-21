@@ -24,7 +24,7 @@ app.post('/checkUser', (req, res) => {
     const username = req.body.username ?? undefined;
     const password = req.body.password ?? undefined;
     
-    if(username == "")
+    if(username == undefined)
     res.end("Username cannot be empty");
 
     checkUser(username, (status)=>{
