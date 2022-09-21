@@ -7,7 +7,7 @@ const app = express();
 const {databaseConfig, publicFolder} = require('./config/config.js');
 const {checkUser} = require('./users/checkUser.js');
 const {createUser} = require('./users/createUser.js');
-
+const {getUser} = require('./users/getUser.js');
 
 app.use(express.static(path.join(__dirname, publicFolder)));
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -61,7 +61,15 @@ app.post('/createUser', (req, res) => {
 });
 
 
+app.post('/getUser', (req, res) => {
+    const username = req.query.username ?? undefined;
+    const password = req.query.password ?? undefined;
 
+    if(username == undefined || password == undefined){
+        res.end("You must fill in all fields");    
+    }
+     getUser(username, password).then(result => res.end(JSON.stringify(result)));
+});
 
 
 
