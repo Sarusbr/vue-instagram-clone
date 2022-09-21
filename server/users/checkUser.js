@@ -2,15 +2,14 @@ const MongoClient = require('mongodb').MongoClient;
 const {databaseConfig, databaseName} = require('../config/database.js');
 const client = new MongoClient(databaseConfig.URL);
 
-async function checkUser(username, password, callback) {
+async function checkUser(username, callback, password) {
 
   try {
-    if(username===undefined) return;
     await client.connect();
-    console.log('Connected successfully to server');
+    console.log('Connected successfully to server (checkUser)');
     const db = client.db(databaseConfig.databaseName);
     const collection = db.collection('users');
-    const deneme = await collection.findOne({ 
+    const result = await collection.findOne({ 
       $and:[
         {
           username: username
@@ -20,13 +19,12 @@ async function checkUser(username, password, callback) {
         }
       ]
     });
-    if( deneme != null ){
-       return  callback("true");
+    if( result != null ){
+       return  callback("available"); //available
     }
     else{
-      return callback("false");
+      return callback("notAvailable"); //not available
     }
-    console.log();
   } catch (error) {
     console.log(error);
   } finally{
