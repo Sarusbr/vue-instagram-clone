@@ -3,8 +3,8 @@
         <div class="loginbox center mb-3 border border-secondery py-4">
             <img src="../../assets/logo.png" class="w-50 user-select-none" alt="">
 
-            <input-text class="w-75" :data="getData" inputType="text" placeholderName="Kullanıcı adı, e-posta veya telefon"></input-text>
-            <input-text class="w-75" :data="getData" inputType="password" placeholderName="Şifre"></input-text>
+            <input-text class="w-75" @modelData="username = $event" inputType="text" placeholderName="Kullanıcı adı, e-posta veya telefon"></input-text>
+            <input-text class="w-75" @modelData="password = $event" inputType="password" placeholderName="Şifre"></input-text>
 
             <div class="btn btn-primary w-75" @click="join">Giriş Yap</div>
 
@@ -41,19 +41,14 @@ export default {
     },
     methods:{
         join(){
+            alert("Giriş işlemi yapılıyor lütfen bekleyiniz!")
             axios.post("/checkUser",{
-                username:"ozanayrikan",
-                password:"123"
+                username:this.username,
+                password:this.password
             })
             .then(response => {
                 console.log(response);
-                console.log(response.data);
-                console.log(this.username);
-                console.log(this.password);
             })
-        },
-        getData(data){
-            console.log(data);
         }
     },
     components:{

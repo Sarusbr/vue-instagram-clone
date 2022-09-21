@@ -21,8 +21,10 @@ export default {
             this.focusStyle = "transparent"
         }
     },
-    created(){
-        this.$emit("modelData",this.data);
+    watch:{
+        data(){
+            this.$emit("modelData",this.data);
+        }
     }
 }
 </script>
