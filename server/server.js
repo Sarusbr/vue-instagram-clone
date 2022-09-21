@@ -23,8 +23,8 @@ app.get('/', (req, res) => {
 
 app.post('/checkUser', (req, res) => {
 
-    const username = req.query.username ?? undefined;
-    const password = req.query.password ?? undefined;
+    const username = req.body.username ?? undefined;
+    const password = req.body.password ?? undefined;
     
     if(username == undefined)
         res.end("Username cannot be empty");
@@ -35,10 +35,10 @@ app.post('/checkUser', (req, res) => {
 
 app.post('/createUser', (req, res) => {
 
-    const newName = req.query.name ?? undefined;
-    const newEmail = req.query.email ?? undefined;
-    const newUsername = req.query.username ?? undefined;
-    const newPassword = req.query.password ?? undefined;
+    const newName = req.body.name ?? undefined;
+    const newEmail = req.body.email ?? undefined;
+    const newUsername = req.body.username ?? undefined;
+    const newPassword = req.body.password ?? undefined;
     
     if(newName == undefined || newEmail == undefined || newUsername == undefined || newPassword == undefined){
         res.end("You must fill in all fields");    
@@ -55,8 +55,8 @@ app.post('/createUser', (req, res) => {
 
 
 app.post('/getUser', (req, res) => {
-    const username = req.query.username ?? undefined;
-    const password = req.query.password ?? undefined;
+    const username = req.body.username ?? undefined;
+    const password = req.body.password ?? undefined;
 
     if(username == undefined || password == undefined)
         res.end("You must fill in all fields");    
