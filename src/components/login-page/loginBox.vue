@@ -42,12 +42,22 @@ export default {
     methods:{
         join(){
             alert("Giriş işlemi yapılıyor lütfen bekleyiniz!")
-            axios.post("/checkUser",{
+            axios.post("/getUser",{
                 username:this.username,
                 password:this.password
             })
             .then(response => {
-                console.log(response);
+                console.log(response.data);
+                console.log(this.username);
+                console.log(this.password);
+                if(response.data[0].status == "Available"){
+                    this.$store.state.username = response.data[1].username;
+                    this.$store.state.name = response.data[1].name;
+                    this.$store.state.email = response.data[1].email;
+                    this.$router.push("/account");
+                }
+                else if(response.data[0].status == "NotAvailable") alert("Şifre veya kullanıcı adı yanlış!")
+                else alert("Boş bilgi bırakılmamalıdır!")
             })
         }
     },
