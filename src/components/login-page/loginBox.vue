@@ -3,10 +3,10 @@
         <div class="loginbox center mb-3 border border-secondery py-4">
             <img src="../../assets/logo.png" class="w-50 user-select-none" alt="">
 
-            <input-text class="w-75" inputType="text" placeholderName="Kullanıcı adı, e-posta veya telefon"></input-text>
-            <input-text class="w-75" inputType="password" placeholderName="Şifre"></input-text>
+            <input-text class="w-75" :data="getData" inputType="text" placeholderName="Kullanıcı adı, e-posta veya telefon"></input-text>
+            <input-text class="w-75" :data="getData" inputType="password" placeholderName="Şifre"></input-text>
 
-            <div class="btn btn-primary w-75">Giriş Yap</div>
+            <div class="btn btn-primary w-75" @click="join">Giriş Yap</div>
 
             <div class="d-flex w-100 yadaDiv">
                 <hr class="w-100 mx-3">
@@ -29,9 +29,33 @@
 </template>
 
 <script>
-import inputText from "./input-text.vue";
+import inputText from "../tools/input-text.vue";
 import singIn from "./singIn.vue";
+import axios from "axios";
 export default {
+    data(){
+        return{
+            username:null,
+            password:null
+        }
+    },
+    methods:{
+        join(){
+            axios.post("/checkUser",{
+                username:"ozanayrikan",
+                password:"123"
+            })
+            .then(response => {
+                console.log(response);
+                console.log(response.data);
+                console.log(this.username);
+                console.log(this.password);
+            })
+        },
+        getData(data){
+            console.log(data);
+        }
+    },
     components:{
         inputText,
         singIn

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import loginBox from "./login-page/loginBox.vue";
+import loginBox from "./components/login-page/loginBox.vue";
 export default {
     components:{
         loginBox

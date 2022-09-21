@@ -1,6 +1,6 @@
 <template>
     <div class="w-75" :style="'border-color:'+focusStyle">
-        <input :type="inputType" class=" w-100" @focus="focus" @blur="focusOut" :placeholder="placeholderName">
+        <input :type="inputType" v-model="data" class=" w-100" @focus="focus" @blur="focusOut" :placeholder="placeholderName">
     </div>
 </template>
 
@@ -9,7 +9,8 @@ export default {
     props:['placeholderName','inputType'],
     data(){
         return{
-            focusStyle:""
+            focusStyle:"",
+            data:null
         }
     },
     methods:{
@@ -19,6 +20,9 @@ export default {
         focusOut(){
             this.focusStyle = "transparent"
         }
+    },
+    created(){
+        this.$emit("modelData",this.data);
     }
 }
 </script>
