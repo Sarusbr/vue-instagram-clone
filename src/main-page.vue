@@ -1,7 +1,7 @@
 <template>
     <div>
         <nav-bar></nav-bar>
-        <div class="container align-items-start center d-flex gap-3">
+        <div class="container main-container align-items-start center d-flex gap-3">
             <story-bar></story-bar>
             <recomended-box v-if="this.$store.state.screenWidth > 800"></recomended-box>
         </div>
@@ -22,6 +22,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+@media screen and (min-width: 1200px){
+    .main-container{
+        width: 1000px;
+    }
+}
 </style>
