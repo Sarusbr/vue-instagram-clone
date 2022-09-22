@@ -70,8 +70,8 @@ app.post('/createUser', (req, res) => {
 
 
 app.post('/getUser', (req, res) => {
-    const username = req.query.username ?? undefined;
-    const password = req.query.password ?? undefined;
+    const username = req.body.username ?? undefined;
+    const password = req.body.password ?? undefined;
     
     if(username == undefined || password == undefined)
         res.end(JSON.stringify({status:"You must fill in all fields"})); 
