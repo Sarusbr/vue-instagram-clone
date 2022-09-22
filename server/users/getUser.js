@@ -8,8 +8,9 @@ async function getUser(username, password, callback) {
     await client.connect();
     console.log('Connected successfully to server (getUser)');
     const db = client.db(databaseConfig.databaseName);
-    const collection = db.collection('users');
-    const result = await collection.findOne({ 
+    const collectionUser = db.collection('users');
+   
+    const result = await collectionUser.findOne({ 
       $and:[
         {
           username: username
@@ -20,7 +21,10 @@ async function getUser(username, password, callback) {
       ]
     });
     if( result != null ){
-       return [{status : "Available"},  result];
+      const resultAllUsers = await collectionUser.find({},{password:0}).toArray();
+      const collectionPost = db.collection('posts');
+      const resultAllPosts = await collectionUser.find({}).toArray();
+       return [{status : "Available"},  {result : result}, {resultAllUsers : resultAllUsers}, {resultAllPosts : resultAllPosts} ];
     }
     else{
         return [{status : "NotAvailable"}];
