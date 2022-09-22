@@ -5,11 +5,11 @@ const app = express();
 const multer = require('multer');
 const fs =  require('fs');
 
-const {databaseConfig, publicFolder} = require('./config/config.js');
+const {databaseConfig, publicFolder, imagesFolder} = require('./config/config.js');
 const {checkUser} = require('./users/checkUser.js');
 const {createUser} = require('./users/createUser.js');
 const {getUser} = require('./users/getUser.js');
-const { fstat } = require('fs');
+const {createPost} = require('./posts/createPost.js');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -42,7 +42,7 @@ app.post('/checkUser', (req, res) => {
     const password = req.body.password ?? undefined;
     
     if(username == undefined)
-        res.end("Username cannot be empty");
+    res.end(JSON.stringify({status:"username cannot be empty"}));
     else
         checkUser(username, password).then(result => res.end(JSON.stringify(result)));
 });
@@ -56,7 +56,7 @@ app.post('/createUser', (req, res) => {
     const newPassword = req.body.password ?? undefined;
     
     if(newName == undefined || newEmail == undefined || newUsername == undefined || newPassword == undefined){
-        res.end("You must fill in all fields");    
+        res.end(JSON.stringify({status:"You must fill in all fields"}));
     }
     else{
         checkUser(newUsername,(status)=>{
@@ -70,11 +70,11 @@ app.post('/createUser', (req, res) => {
 
 
 app.post('/getUser', (req, res) => {
-    const username = req.body.username ?? undefined;
-    const password = req.body.password ?? undefined;
-
+    const username = req.query.username ?? undefined;
+    const password = req.query.password ?? undefined;
+    
     if(username == undefined || password == undefined)
-        res.end("You must fill in all fields");    
+        res.end(JSON.stringify({status:"You must fill in all fields"})); 
 
      getUser(username, password).then(result => res.end(JSON.stringify(result)));
 });
@@ -83,25 +83,29 @@ app.post('/createPost',upload.single("postImage"), (req, res) => {
     const username = req.body.username ?? undefined;
     const password = req.body.password ?? undefined;
     const description = req.body.description ?? undefined;
+    const profilePhoto = req.body.profilePhoto ?? undefined;
     const postImage = req.file ?? undefined;
 
-    
+    if(username == undefined || password == undefined || postImage == undefined || description == undefined || profilePhoto == undefined)
+    res.end(JSON.stringify({status:"You must fill in all fields"}));
 
-    if(username == undefined || password == undefined || postImage == undefined || description == undefined )
-    res.end("You must fill in all fields");
+    checkUser(username, status=>{
+        if(status[0].status == "NotAvailable")
+            res.end(JSON.stringify({status:"NotAvailable"}));
+     },password);
 
-    console.log(postImage.filename);
-    res.end("/posts/images/" + postImage.filename);
+
+    createPost(username, profilePhoto, imagesFolder + postImage.filename, description).then(result => res.end(JSON.stringify(result , {"postImage":"/posts/images/" + postImage.filename})));
 });
 
-app.get('/posts/images/:postImageFullName', (req, res) => {
+app.get(imagesFolder + ':postImageFullName', (req, res) => {
    const postImageFullName = req.params.postImageFullName;
-   fs.readFile(__dirname + "/posts/images/"+postImageFullName, function (err, content) {
-        res.end(content);
+   fs.readFile(__dirname + imagesFolder + postImageFullName, function (err, content) {
+        res.statusCode(200).end(content);
     });
 });
 
 
-
 app.listen(process.env.PORT || 80);
+
 

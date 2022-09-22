@@ -8,9 +8,10 @@ const databaseConfig = {
 };
 
 const publicFolder = '/../pages';
-
+const imagesFolder = '/posts/images/';
 
 module.exports = {
     databaseConfig: databaseConfig,
-    publicFolder: publicFolder
+    publicFolder: publicFolder,
+    imagesFolder: imagesFolder
 }

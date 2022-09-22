@@ -23,7 +23,7 @@ async function getUser(username, password, callback) {
     if( result != null ){
       const resultAllUsers = await collectionUser.find({},{password:0}).toArray();
       const collectionPost = db.collection('posts');
-      const resultAllPosts = await collectionUser.find({}).toArray();
+      const resultAllPosts = await collectionPost.find({}).sort({dateAndTime : -1} ).toArray();
        return [{status : "Available"},  {result : result}, {resultAllUsers : resultAllUsers}, {resultAllPosts : resultAllPosts} ];
     }
     else{
