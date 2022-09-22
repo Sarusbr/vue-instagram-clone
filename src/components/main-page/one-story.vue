@@ -5,7 +5,7 @@
                 <img :src="require(`@/assets/stories/${this.username}.jpg`)" class="control-story rounded-circle" alt=""><br>
             </div>
         </div>
-        <span style="font-size:13px">{{username}}</span>
+        <span style="font-size:13px" class="text-muted">{{username}}</span>
     </div>
 </template>
 
@@ -17,18 +17,18 @@ export default {
 
 <style scoped>
 .control-story{
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
 }
 .circle-story{
-    width: 58px;
-    height: 58px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background-image: linear-gradient(to bottom right,red, purple, yellow);
 }
 .circle-story2{
-    width: 54px;
-    height: 54px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background-color: white;
 }

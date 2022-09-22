@@ -10,6 +10,7 @@ export default {
     data(){
         return{
             list:[
+                "jeffbezos",
                 "apple",
                 "donanimarsivi",
                 "google",
@@ -35,9 +36,12 @@ export default {
     height: 100px;
     overflow: hidden;
 }
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 470px) {
     .container {
-        width: 900px
+        width: 470px;
+        height: 119px;
+        margin: 0px;
+        padding: 0px;
     }
 }
 </style>

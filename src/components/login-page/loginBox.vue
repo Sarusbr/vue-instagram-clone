@@ -1,7 +1,7 @@
 <template>
     <div class="center flex-column w-100">
         <div class="loginbox center mb-3 border border-secondery py-4">
-            <img src="../../assets/logo.png" class="w-50 user-select-none" alt="">
+            <img src="@/assets/logo.png" class="w-50 user-select-none" alt="">
 
             <input-text class="w-75" @modelData="username = $event" inputType="text" placeholderName="Kullanıcı adı, e-posta veya telefon"></input-text>
             <input-text class="w-75" @modelData="password = $event" inputType="password" placeholderName="Şifre"></input-text>
@@ -15,7 +15,7 @@
             </div>
 
             <div class="w-100 center crs-pointer user-select-none">
-                <img class="faceimg mx-2" src="../../assets/faceIcon.png" alt=""> <span class="font-weight-bold">Facebook ile giriş yap</span>
+                <img class="faceimg mx-2" src="@/assets/faceIcon.png" alt=""> <span class="font-weight-bold">Facebook ile giriş yap</span>
             </div>
 
             <div class="w-100 center crs-pointer user-select-none">
@@ -47,13 +47,13 @@ export default {
                 password:this.password
             })
             .then(response => {
-                console.log(response.data);
-                console.log(this.username);
-                console.log(this.password);
                 if(response.data[0].status == "Available"){
-                    this.$store.state.username = response.data[1].username;
-                    this.$store.state.name = response.data[1].name;
-                    this.$store.state.email = response.data[1].email;
+                    console.log(response.data.splice(1,3))
+                    this.$store.state.data ={
+                        ...response.data.splice(1,3)
+                    }
+                    console.log(this.$store.state.data);
+                    alert("Giriş Başarılı")
                     this.$router.push("/account");
                 }
                 else if(response.data[0].status == "NotAvailable") alert("Şifre veya kullanıcı adı yanlış!")

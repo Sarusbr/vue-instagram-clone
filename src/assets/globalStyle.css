@@ -2,6 +2,10 @@ body{
     background-color: #fafbfb;
 }
 
+.f-bold{
+    font-weight: bold;
+}
+
 .center{
     display: flex;
     align-items: center;

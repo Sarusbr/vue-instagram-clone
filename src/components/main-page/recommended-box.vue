@@ -1,18 +1,18 @@
 <template>
     <div class="m-3 rounded recomendedBox">
-        <div class="my-rec-profile mt-3 d-flex w-100 align-items-center">
+        <div class="my-rec-profile mt-3 reco-my d-flex w-100 align-items-center">
             <img src="@/assets/test-story.png" class="my-rec-profile-img rounded-circle" alt="">
-            <div class="d-flex flex-column">
-                <span class="font3">{{this.$store.state.username}}</span>
-                <span class="font2 text-muted">{{this.$store.state.name}}</span>
+            <div class="d-flex flex-column reco-this-user">
+                <span class="font1 f-bold">{{'asdasd'}}</span>
+                <span class="font1 f-bold text-muted">{{'asdasd'}}</span>
             </div>
         </div>
         <div class="recomendeds">
             <div class="d-flex">
-                <span class="text-muted font2 d-flex p-2 w-60">Senin için önerilenler</span>
-                <span class="font1 crs-pointer d-flex w-40 justify-content-end p-2">Tümünü gör</span>
+                <span class="text-muted font2 d-flex p-2 w-60 myfont1">Senin için önerilenler</span>
+                <span class="font1 crs-pointer d-flex w-40 justify-content-end myfont2 p-2">Tümünü gör</span>
             </div>
-            <rec-one v-for="item in 5" :key="item"></rec-one>
+            <rec-one v-for="item in this.$store.state.data[1].resultAllUsers.slice(0,5)" :data="item" :key="item"></rec-one>
         </div>
     </div>
 </template>
@@ -28,9 +28,22 @@ export default {
 
 <style scoped>
 .my-rec-profile-img{
-    width: 65px;
-    height: 65px;
-    margin: 10px;
+    width: 56px;
+    height: 56px;
+}
+.myfont1{
+    font-size: 14px;
+}
+.myfont2{
+    font-size: 12px;
+}
+.reco-my{
+    width: 400px;
+    height: 56px;
+}
+.reco-this-user{
+    width: 198px;
+    height: 30px;
 }
 .trackbtn{
     width: 180px;
@@ -41,11 +54,10 @@ export default {
     height: 40px;
     margin-right: 20px;
 }
-.my-rec-profile{
-    height: 80px;
-}
 .recomendedBox{
-    width: 400px;
+    width: 500px;
     height: 500px;
+    padding: 0px;
+    margin: 0px;
 }
 </style>
