@@ -48,11 +48,10 @@ export default {
             })
             .then(response => {
                 if(response.data[0].status == "Available"){
-                    console.log(response.data.splice(1,3))
-                    this.$store.state.data ={
-                        ...response.data.splice(1,3)
-                    }
+                    
+                    this.$store.state.data = response.data.splice(1,3);
                     console.log(this.$store.state.data);
+              
                     alert("Giriş Başarılı")
                     this.$router.push("/account");
                 }

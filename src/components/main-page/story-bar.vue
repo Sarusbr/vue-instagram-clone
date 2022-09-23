@@ -1,5 +1,5 @@
 <template>
-    <div class="container d-flex align-items-center story-limit rounded m-3 bg-white border">
+    <div class="container d-flex align-items-center story-limit rounded mt-3 bg-white border">
         <one-story v-for="item in list" :key="item" :username="item"></one-story>
     </div>
 </template>

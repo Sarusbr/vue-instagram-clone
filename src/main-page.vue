@@ -2,8 +2,9 @@
     <div>
         <nav-bar></nav-bar>
         <div class="container main-container align-items-start center d-flex gap-3">
-            <div style="width:470px;margin-right:32px">
+            <div class="storypost-container">
                 <story-bar></story-bar>
+                <post-box></post-box>
             </div>
             <recomended-box v-if="this.$store.state.screenWidth > 800"></recomended-box>
         </div>
@@ -14,12 +15,15 @@
 import navBar from "./components/main-page/nav-bar.vue";
 import storyBar from "./components/main-page/story-bar.vue";
 import recomendedBox from "./components/main-page/recommended-box.vue";
+import postBox from "./components/main-page/post-box.vue";
+
 
 export default {
     components:{
         navBar,
         storyBar,
-        recomendedBox
+        recomendedBox,
+        postBox
     }
 }
 </script>
@@ -31,5 +35,9 @@ export default {
         margin-top: 10px;
         padding: 0px;
     }
+}
+.storypost-container{
+    width:470px;
+    margin-right:32px;
 }
 </style>

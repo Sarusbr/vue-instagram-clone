@@ -1,10 +1,10 @@
 <template>
     <div class="m-3 rounded recomendedBox">
         <div class="my-rec-profile mt-3 reco-my d-flex w-100 align-items-center">
-            <img src="@/assets/test-story.png" class="my-rec-profile-img rounded-circle" alt="">
+            <img :src="this.$store.state.data[0].result.profilePhoto" class="my-rec-profile-img rounded-circle" alt="">
             <div class="d-flex flex-column reco-this-user">
-                <span class="font1 f-bold">{{'asdasd'}}</span>
-                <span class="font1 f-bold text-muted">{{'asdasd'}}</span>
+                <span class="font1 f-bold pl1">{{this.$store.state.data[0].result.username}}</span>
+                <span class="font1 f-bold pl1 text-muted">{{this.$store.state.data[0].result.name}}</span>
             </div>
         </div>
         <div class="recomendeds">
@@ -27,6 +27,9 @@ export default {
 </script>
 
 <style scoped>
+.pl1{
+    padding-left: 15px;
+}
 .my-rec-profile-img{
     width: 56px;
     height: 56px;
