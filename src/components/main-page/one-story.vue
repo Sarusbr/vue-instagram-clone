@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column mx-2 align-items-center story-box">
+    <div class="d-flex flex-column mx-1 align-items-center story-box">
         <div class="center circle-story">
             <div class="center circle-story2">
                 <img :src="require(`@/assets/stories/${this.username}.jpg`)" class="control-story rounded-circle" alt=""><br>

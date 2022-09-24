@@ -2,8 +2,20 @@ body{
     background-color: #fafbfb;
 }
 
-.f-bold{
+.f-bold4{
     font-weight: bold;
+}
+
+.f-bold1{
+    font-weight: 600;
+}
+
+.f-bold2{
+    font-weight: 800;
+}
+
+.f-bold3{
+    font-weight: 900;
 }
 
 .flot-left{

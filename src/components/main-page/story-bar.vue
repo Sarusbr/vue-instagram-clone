@@ -1,5 +1,7 @@
 <template>
-    <div class="container d-flex align-items-center story-limit rounded mt-3 bg-white border">
+    <div class="container d-flex align-items-center story-limit rounded mt-3 bg-white border"
+    :style="this.$store.state.screenWidth < 500 ? 'width:'+this.$store.state.screenWidth+'px':''"
+    >
         <one-story v-for="item in list" :key="item" :username="item"></one-story>
     </div>
 </template>
@@ -36,7 +38,7 @@ export default {
     height: 100px;
     overflow: hidden;
 }
-@media screen and (min-width: 470px) {
+@media screen and (min-width: 500px) {
     .container {
         width: 470px;
         height: 119px;
