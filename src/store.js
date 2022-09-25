@@ -11,7 +11,7 @@ const store = createStore({
                     "name": "batuhan asd",
                     "password": "asd",
                     "email": "asd@gmail.com",
-                    "username": "asd",
+                    "username": "jhon.snow",
                     "bio": "The Admin",
                     "website": "The Website",
                     "postsCount": 0,

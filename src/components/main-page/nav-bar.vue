@@ -10,12 +10,13 @@
             
             <div style="padding-left:50px">
                 <div class="d-flex ing-icon-box" :style="screenWidth > 400 ? 'gap-2':''">
-                    <iconVue class="crs-pointer" name="home"></iconVue>
+                    <iconVue class="crs-pointer" @click="account" name="home"></iconVue>
                     <iconVue class="crs-pointer" name="dm"></iconVue>
                     <iconVue class="crs-pointer" name="add" @click="openPopup"></iconVue>
-                    <iconVue class="crs-pointer" name="explore"></iconVue>
+                    <iconVue class="crs-pointer" @click="explore" name="explore"></iconVue>
                     <iconVue class="crs-pointer" name="likes"></iconVue>
-                    <iconVue class="crs-pointer" @click="mytest" name="profileIcon"></iconVue>
+                    <!-- <iconVue class="crs-pointer" @click="profile" name="profileIcon"></iconVue> -->
+                    <img @click="profile" :src="this.$store.state.data[0].result.profilePhoto" class="rounded-circle" alt="">
                 </div>
             </div>
 
@@ -31,9 +32,11 @@ export default {
         }
     },
     methods:{
-        mytest(){
-            console.log(this.$store.state.data[1].resultAllUsers)
+        profile(){
+            this.$router.push("/myprofile");
         },
+        explore(){this.$router.push("/explore");},
+        account(){this.$router.push("/account");},
         openPopup(){
             this.$store.state.popupStatus = true;
         }
