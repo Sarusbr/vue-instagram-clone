@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     data(){
         return{
@@ -100,7 +99,7 @@ export default {
 }
 .popup{
     position: fixed;
-    z-index: 1000;
+    z-index: 10000;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);

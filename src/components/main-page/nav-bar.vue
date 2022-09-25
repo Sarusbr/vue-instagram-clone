@@ -53,6 +53,7 @@ export default {
     padding: 0px;
     position: sticky;
     top: 0px;
+    z-index: 1000;
 }
 
 @media screen and (min-width: 800px){
