@@ -17,7 +17,6 @@ export default {
                 "donanimarsivi",
                 "google",
                 "ilberortayli",
-                "jeffbezos",
                 "kodluyoruz",
                 "microsoft",
                 "nasa",
